@@ -1,14 +1,15 @@
 import React from 'react';
 import CertificateForm from './components/CertificateForm';
 import generateCertificate from './components/CertificateGenerator';
+import BackgroundBubbles from './components/BackgroundBubbles';
 
 
 function App() {
   return (
     <div>
-      <h1>Certificate Generator</h1>
+      <BackgroundBubbles />
       <CertificateForm onGenerate={generateCertificate} />
-      
+
     </div>
   );
 }
