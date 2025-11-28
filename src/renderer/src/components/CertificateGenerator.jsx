@@ -41,6 +41,7 @@ export const generateCertificate = async (data) => {
     duration,
     internshipStartDate,
     internshipEndDate,
+    internshipCourse,
   } = data;
 
   const pdfDoc = await PDFDocument.create();
@@ -287,7 +288,13 @@ export const generateCertificate = async (data) => {
   y -= lineSpacing;
 
   // Internship completion text with all details
-  const visitLine = 'as she/he has successfully completed the Internship in ';
+  let visitLine = 'as she/he has successfully completed the Internship in ';
+  
+  // Add internship course if provided
+  if (internshipCourse) {
+    visitLine += cleanText(internshipCourse) + ' ';
+  }
+  
   const visitLineWidth = timesRomanFont.widthOfTextAtSize(visitLine, 20);
   
   // Build the full internship description - split for bold project title
@@ -297,7 +304,7 @@ export const generateCertificate = async (data) => {
   let durationText = '';
   
   if (projectTitle) {
-    internshipDescription += 'a project titled "';
+    internshipDescription += 'in a project titled "';
     projectTitleBold = cleanText(projectTitle);
     internshipDescription += '"';
   }
